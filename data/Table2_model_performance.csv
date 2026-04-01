@@ -1,0 +1,16 @@
+Model,Features,Assay,R²,RMSE,MAE
+RandomForest,mordred,ABTS,0.948,0.108,0.085
+RandomForest,mordred,DPPH,0.803,0.174,0.130
+RandomForest,mordred,FRAP,0.712,0.160,0.126
+RandomForest,morgan,ABTS,0.905,0.146,0.120
+RandomForest,morgan,DPPH,0.750,0.196,0.148
+RandomForest,morgan,FRAP,0.799,0.133,0.111
+XGBoost,mordred,ABTS,0.969,0.083,0.071
+XGBoost,mordred,DPPH,0.822,0.166,0.113
+XGBoost,mordred,FRAP,0.379,0.234,0.175
+XGBoost,morgan,ABTS,0.878,0.191,0.175
+XGBoost,morgan,DPPH,0.607,0.231,0.163
+XGBoost,morgan,FRAP,0.754,0.148,0.115
+FragMoE,GIN+MoE,DPPH,0.455,0.265,0.211
+FragMoE,GIN+MoE,ABTS,0.735,0.276,0.190
+FragMoE,GIN+MoE,FRAP,0.779,0.140,0.120

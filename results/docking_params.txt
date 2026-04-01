@@ -1,0 +1,7 @@
+Date: Tue 31 Mar 2026 14:17:09 
+Ligand: C[C@H]1CC[C@]2(OC1)O[C@H]1C[C@H]3[C@@H]4CC=C5C[C@@H](O)CC[C@]5(C)[C@H]4CC[C@]3(C)[C@H]1[C@@H]2C
+Method: Vina
+Target: 4IQK.pdb
+Sampling exhaustivity: 4
+Box size: 30 30 30
+Box center: -35.0 -1.0 -18.0
