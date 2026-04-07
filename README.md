@@ -1,108 +1,162 @@
-# FragMoE: Interpretable Antioxidant Activity Prediction
+# FragMoE: Interpretable Antioxidant Activity Prediction of Steroidal Saponins
 
-[![Paper](https://img.shields.io/badge/Paper-JAFC-submitted)](https://github.com/nblvguohao/FragMoE)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-> **Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from *Polygonatum cyrtonema***  
-> Journal of Agricultural and Food Chemistry (Submitted)
+Insights from Machine Learning and Network Pharmacology
 
 ## Overview
 
-This repository contains the complete computational framework, datasets, and analysis code for the FragMoE (Fragment-based Mixture of Experts) study on antioxidant activity prediction of steroidal saponins from *Polygonatum cyrtonema* (Huangjing).
+This repository contains the code, data, and trained models for the paper:
 
-### Key Findings
+> **Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from *Polygonatum cyrtonema*: Insights from Interpretable Machine Learning and Network Pharmacology**
+>
+> Guohao Lv, Lichuan Gu
+>
+> *Journal of Agricultural and Food Chemistry*, 2024 (Submitted)
 
-1. **Aglycone cores contribute 3-4× more** than glycosylated fragments to antioxidant activity (1.63-1.72 vs 0.41-0.54, p < 0.001)
-2. **High-affinity Keap1 binding**: Smilagenin shows −11.137 kcal/mol binding energy, exceeding the −7 kcal/mol significance threshold
-3. **100 ns MD validation**: Confirms Keap1 structural stability (RMSD = 0.106 ± 0.011 nm)
-4. **Nrf2/HO-1 pathway**: Primary mechanism identified via network pharmacology (FDR = 0.003)
+This study investigates the structural determinants of antioxidant activity in steroidal saponins from *Polygonatum cyrtonema*, a traditional medicinal food plant. Using interpretable machine learning (FragMoE with Integrated Gradients), we demonstrate that **aglycone cores contribute 3-4× more than glycosylated fragments** to antioxidant activity, validated through network pharmacology, molecular docking (−11.137 kcal/mol for Smilagenin-Keap1), and 100 ns molecular dynamics simulation.
+
+## Key Results
+
+| Assay | n | Champion Model | R² [95% CI] |
+|-------|---|---------------|-------------|
+| DPPH | 70 | Multi-kernel SVR | 0.655 [0.481, 0.766] |
+| ABTS | 42 | Multi-kernel SVR | 0.887 [0.785, 0.936] |
+| FRAP | 16 | BayesianRidge | 0.853 [0.745, 0.908] (exploratory) |
 
 ## Repository Structure
 
 ```
-├── data/                      # Curated datasets
-│   ├── saponin_dataset.csv   # 91 compounds, 128 activity records
-│   └── fragment_library/     # BRICS fragment decomposition
-├── results/                   # Key experimental results
-│   ├── docking/              # Keap1 docking poses (-11.137 kcal/mol)
-│   ├── md_100ns/             # GROMACS 100ns trajectory analysis
-│   └── figures/              # Publication-quality figures
-├── notebooks/                 # Reproducible analysis notebooks
-│   ├── 01_data_analysis.ipynb
-│   ├── 02_model_benchmarking.ipynb
-│   ├── 03_fragmoe_interpretability.ipynb
-│   ├── 04_network_pharmacology.ipynb
-│   └── 05_md_analysis.ipynb
-├── src/                       # Source code (simplified)
-│   ├── models.py             # Multi-kernel SVR implementation
-│   └── utils.py              # Helper functions
-└── README.md
+fragmoe/
+├── data/                    # Curated antioxidant dataset (91 compounds, 128 records)
+├── src/                     # Core source code (27 modules)
+│   ├── optimized_svr_v2.py  # Multi-kernel SVR champion model
+│   ├── fragmoe_model.py     # FragMoE architecture (GIN + MoE + SAC)
+│   └── ...
+├── baselines/               # Baseline model implementations
+│   ├── 01_traditional_ml.py # RF, XGBoost
+│   ├── 04_fair_baselines.py # GPR-Tanimoto, SVR-Tanimoto(std), SVR-RBF(std)
+│   └── ...
+├── scripts/                 # Experiment scripts
+│   ├── ablation_study.py    # 3 ablation experiments
+│   ├── statistical_tests.py # Bootstrap CI, Wilcoxon, permutation tests
+│   ├── shap_vs_sac_comparison.py  # Cross-method XAI validation
+│   └── ...
+├── manuscript/              # LaTeX manuscript files
+│   ├── main.tex             # Main manuscript (BIB format)
+│   ├── supplementary.tex    # Supplementary information
+│   ├── cover_letter.tex     # Cover letter
+│   └── 07_references.bib    # BibTeX references
+├── results/                 # Experiment results and figures
+├── configs/                 # Configuration files
+├── environment.yml          # Conda environment (pinned versions)
+├── REPRODUCE.md             # Step-by-step reproduction guide
+└── LICENSE                  # MIT License
 ```
 
 ## Quick Start
 
-### Requirements
+### Environment Setup
+
 ```bash
-pip install numpy pandas scikit-learn rdkit matplotlib seaborn
+conda env create -f environment.yml
+conda activate fragmoe
 ```
 
-### Reproduce Main Results
-```python
-import pandas as pd
+### Reproduce All Results
 
-# Load dataset
-df = pd.read_csv('data/saponin_dataset.csv')
-print(f"Dataset: {len(df)} compounds, {df['activity'].count()} activity records")
+```bash
+# Run complete benchmark pipeline
+python scripts/run_reproducible_benchmark.py
 
-# Key result: Aglycone vs Glycosylated contribution
-print("Aglycone contribution: 1.63-1.72")
-print("Glycosylated contribution: 0.41-0.54")
+# Verify result integrity
+python scripts/check_result_integrity.py
 ```
 
-### MD Simulation Data
-All 100ns MD analysis results are in `results/md_100ns/`:
-- RMSD: 0.106 ± 0.011 nm
-- Rg: 1.788 ± 0.007 nm  
-- H-bonds: 216.2 ± 6.8
+### Run Individual Components
+
+```bash
+# Champion model (multi-kernel SVR)
+python src/optimized_svr_v2.py
+
+# Fair baselines (GPR, standard SVR)
+python baselines/04_fair_baselines.py
+
+# Ablation study
+python scripts/ablation_study.py
+
+# Statistical tests (bootstrap CI, Wilcoxon, permutation)
+python scripts/statistical_tests.py
+
+# Cross-method XAI validation (SHAP vs permutation importance)
+python scripts/shap_vs_sac_comparison.py
+```
+
+## Methods Summary
+
+1. **Per-Assay Specialization**: Independent champion model selection per assay via nested LOOCV
+2. **Multi-Kernel SVR**: K = w1*Dice(Morgan) + w2*Tanimoto(MACCS) + w3*RBF(saponin)
+3. **FragMoE Module**: BRICS fragmentation -> GIN encoding -> MoE (4 experts) -> SAC attention
+4. **Statistical Rigor**: Bootstrap 95% CI (5000 resamples), Wilcoxon signed-rank tests, permutation tests
+5. **Multi-Scale Validation**: Network pharmacology -> Molecular docking (Keap1) -> 10 ns MD simulation
 
 ## Data Availability
 
-### Primary Dataset
-- **91 compounds** from *Polygonatum cyrtonema* and related natural products
-- **128 activity records**: DPPH (n=70), ABTS (n=42), FRAP (n=16)
-- **Features**: Morgan fingerprints (ECFP4), MACCS keys, saponin domain features
+All datasets supporting this study are openly available in this GitHub repository under the `data/` directory.
 
-### Molecular Dynamics
-- **System**: Keap1 Kelch domain (PDB: 4IQK)
-- **Ligand**: Smilagenin (CID 91439)
-- **Software**: GROMACS 2023.3, AMBER03 force field, TIP3P water
-- **Duration**: 100 ns production run
-- **Hardware**: NVIDIA A100-80GB GPU
+### Current Structure (Pre-acceptance)
 
-### Docking
-- **Software**: AutoDock Vina 1.2.7
-- **Receptor**: Keap1 (PDB: 4IQK)
-- **Grid**: 30×30×30 Å, center: −35.0, −1.0, −18.0 Å
-- **Best pose**: −11.137 kcal/mol
+Raw data files are currently organized in:
+- `data/processed/` - Processed datasets
+- `data/raw/` - Raw data files
+- `data/splits/` - Train/validation/test splits
+
+### Final Structure (Post-acceptance)
+
+After paper acceptance, data will be reorganized into the following structure (see `data/README.md`):
+
+```
+data/
+├── 01_dataset/           # Main dataset (91 compounds, 128 records)
+├── 02_structures/        # 3D molecular structures
+├── 03_targets/           # Predicted targets (127 targets)
+├── 04_results/           # Pathway enrichment and predictions
+└── 05_md/                # MD simulation data
+```
+
+### Dataset Summary
+
+| Statistic | Value |
+|-----------|-------|
+| **Total compounds** | 91 unique molecules |
+| **Total activity records** | 128 |
+| - DPPH assay | 70 records |
+| - ABTS assay | 42 records |
+| - FRAP assay | 16 records (exploratory) |
+| *P. cyrtonema* saponins | 16 compounds (17.6%) |
+| **Molecular weight range** | 138-1065 Da |
+| **Predicted targets** | 127 proteins |
+
+No additional registration or access request is required. All data can be directly downloaded from this repository.
 
 ## Citation
 
 ```bibtex
-@article{fragmoe2026,
-  title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from Polygonatum cyrtonema: Insights from Interpretable Machine Learning and Network Pharmacology},
+@article{fragmoe2024,
+  title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from
+         Polygonatum cyrtonema: Insights from Interpretable Machine Learning and
+         Network Pharmacology},
+  author={Lv, Guohao and Gu, Lichuan},
   journal={Journal of Agricultural and Food Chemistry},
-  year={2026},
-  publisher={ACS}
+  year={2024},
+  publisher={American Chemical Society}
 }
 ```
 
 ## License
 
-MIT License - See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## Reproducibility
 
-For questions about this repository, please open an issue.
+All random seeds are fixed at 42. See [REPRODUCE.md](REPRODUCE.md) for detailed reproduction instructions including expected outputs and verification checksums.
 
----
-**Note**: This is a simplified release for reproducibility. The full codebase with all model variants is available upon request.
+**Environment**: Python 3.11.7, scikit-learn 1.8.0, RDKit 2022.09.5, PyTorch 2.5.1, XGBoost 3.2.0
