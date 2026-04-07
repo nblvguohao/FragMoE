@@ -10,7 +10,7 @@ This repository contains the code, data, and trained models for the paper:
 >
 > Guohao Lv, Lichuan Gu
 >
-> *Journal of Agricultural and Food Chemistry*, 2024 (Submitted)
+> *Journal of Agricultural and Food Chemistry*, 2026 (Submitted)
 
 This study investigates the structural determinants of antioxidant activity in steroidal saponins from *Polygonatum cyrtonema*, a traditional medicinal food plant. Using interpretable machine learning (FragMoE with Integrated Gradients), we demonstrate that **aglycone cores contribute 3-4× more than glycosylated fragments** to antioxidant activity, validated through network pharmacology, molecular docking (−11.137 kcal/mol for Smilagenin-Keap1), and 100 ns molecular dynamics simulation.
 
@@ -140,13 +140,13 @@ No additional registration or access request is required. All data can be direct
 ## Citation
 
 ```bibtex
-@article{fragmoe2024,
+@article{fragmoe2026,
   title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from
          Polygonatum cyrtonema: Insights from Interpretable Machine Learning and
          Network Pharmacology},
   author={Lv, Guohao and Gu, Lichuan},
   journal={Journal of Agricultural and Food Chemistry},
-  year={2024},
+  year={2026},
   publisher={American Chemical Society}
 }
 ```

@@ -67,12 +67,12 @@ CC-BY-4.0 (See LICENSE.txt in repository root)
 ## Citation
 
 ```bibtex
-@article{fragmoe2024,
+@article{fragmoe2026,
   title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from
          Polygonatum cyrtonema: Insights from Interpretable Machine Learning and
          Network Pharmacology},
   author={Lv, Guohao and Gu, Lichuan},
   journal={Journal of Agricultural and Food Chemistry},
-  year={2024}
+  year={2026}
 }
 ```
