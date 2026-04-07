@@ -27,29 +27,25 @@ This study investigates the structural determinants of antioxidant activity in s
 ```
 fragmoe/
 ├── data/                    # Curated antioxidant dataset (91 compounds, 128 records)
-├── src/                     # Core source code (27 modules)
+│   ├── 01_dataset/          # Main dataset, annotations, and splits
+│   ├── 02_structures/       # 3D molecular structures (SDF format)
+│   ├── 03_targets/          # Predicted protein targets (127 targets)
+│   ├── 04_results/          # Pathway enrichment and predictions
+│   └── 05_md/               # MD simulation data (optional)
+├── src/                     # Core source code (9 modules)
 │   ├── optimized_svr_v2.py  # Multi-kernel SVR champion model
-│   ├── fragmoe_model.py     # FragMoE architecture (GIN + MoE + SAC)
-│   └── ...
-├── baselines/               # Baseline model implementations
-│   ├── 01_traditional_ml.py # RF, XGBoost
-│   ├── 04_fair_baselines.py # GPR-Tanimoto, SVR-Tanimoto(std), SVR-RBF(std)
-│   └── ...
-├── scripts/                 # Experiment scripts
-│   ├── ablation_study.py    # 3 ablation experiments
-│   ├── statistical_tests.py # Bootstrap CI, Wilcoxon, permutation tests
-│   ├── shap_vs_sac_comparison.py  # Cross-method XAI validation
-│   └── ...
-├── manuscript/              # LaTeX manuscript files
-│   ├── main.tex             # Main manuscript (BIB format)
-│   ├── supplementary.tex    # Supplementary information
-│   ├── cover_letter.tex     # Cover letter
-│   └── 07_references.bib    # BibTeX references
+│   ├── ensemble_models.py   # Ensemble model implementations
+│   ├── explainability.py    # SHAP and interpretability analysis
+│   ├── fragment.py          # BRICS fragmentation
+│   ├── model.py             # Core model architectures
+│   ├── model_router.py      # Model routing logic
+│   ├── train_hybrid_fragmoe.py  # FragMoE training
+│   └── trainer.py           # Training utilities
+├── notebooks/               # Jupyter notebooks for analysis
 ├── results/                 # Experiment results and figures
-├── configs/                 # Configuration files
-├── environment.yml          # Conda environment (pinned versions)
-├── REPRODUCE.md             # Step-by-step reproduction guide
-└── LICENSE                  # MIT License
+├── requirements.txt         # Python dependencies
+├── LICENSE                  # MIT License
+└── README.md                # This file
 ```
 
 ## Quick Start
@@ -57,18 +53,7 @@ fragmoe/
 ### Environment Setup
 
 ```bash
-conda env create -f environment.yml
-conda activate fragmoe
-```
-
-### Reproduce All Results
-
-```bash
-# Run complete benchmark pipeline
-python scripts/run_reproducible_benchmark.py
-
-# Verify result integrity
-python scripts/check_result_integrity.py
+pip install -r requirements.txt
 ```
 
 ### Run Individual Components
@@ -77,17 +62,11 @@ python scripts/check_result_integrity.py
 # Champion model (multi-kernel SVR)
 python src/optimized_svr_v2.py
 
-# Fair baselines (GPR, standard SVR)
-python baselines/04_fair_baselines.py
+# Ensemble models
+python src/ensemble_models.py
 
-# Ablation study
-python scripts/ablation_study.py
-
-# Statistical tests (bootstrap CI, Wilcoxon, permutation)
-python scripts/statistical_tests.py
-
-# Cross-method XAI validation (SHAP vs permutation importance)
-python scripts/shap_vs_sac_comparison.py
+# Fragment-based analysis
+python src/fragment.py
 ```
 
 ## Methods Summary
@@ -157,6 +136,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Reproducibility
 
-All random seeds are fixed at 42. See [REPRODUCE.md](REPRODUCE.md) for detailed reproduction instructions including expected outputs and verification checksums.
+All random seeds are fixed at 42. The repository includes complete source code and datasets for full reproducibility.
 
-**Environment**: Python 3.11.7, scikit-learn 1.8.0, RDKit 2022.09.5, PyTorch 2.5.1, XGBoost 3.2.0
+**Environment**: Python 3.10+, scikit-learn 1.0+, RDKit 2022.09+, PyTorch 1.10+
