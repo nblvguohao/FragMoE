@@ -1,4 +1,0 @@
-Assay,n_samples,Y_range,R²,RMSE,MAE,Pearson_r,Model,CV_Protocol
-ABTS,42,3.67-6.10,0.8921,0.1759,0.1396,0.9456,V2-DomainAdapted (SVR-Tanimoto),LOOCV
-DPPH,70,3.70-5.47,0.6414,0.2147,0.1606,0.8027,V2-DomainAdapted (SVR-Tanimoto),LOOCV
-FRAP,16,3.72-4.67,0.8673,0.1083,0.0939,0.9315,BayesianRidge,LOOCV

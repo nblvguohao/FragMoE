@@ -1,6 +1,0 @@
-Model,FRAP_R2,FRAP_95CI,Note
-Stacking Ensemble,0.920,"[0.82, 1.00]",Exploratory (n=16)
-V2-DomainAdapted,0.867,"[0.77, 0.96]",Exploratory (n=16)
-HybridFragMoE,0.900,"[0.80, 1.00]",Exploratory (n=16)
-FragMoE (Base),0.779,"[0.68, 0.88]",Exploratory (n=16)
-Random Forest,0.799,"[0.71, 0.89]",Exploratory (n=16)
