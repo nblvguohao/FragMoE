@@ -37,7 +37,7 @@ OUTPUT_PATH = Path(__file__).parent
 
 # 使用色盲友好的颜色方案
 colors_blind_friendly = {
-    'FragMoE': '#0072B2',      # 蓝色
+    'MK-Ensemble': '#0072B2',      # 蓝色
     'RandomForest': '#D55E00',  # 红橙色
     'XGBoost': '#009E73',       # 绿色
     'SVR': '#CC79A7',           # 粉色
@@ -51,7 +51,7 @@ def generate_figure2_revised():
     """
     # 基于远程服务器实际数据
     data = {
-        'Model': ['FragMoE', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
+        'Model': ['MK-Ensemble', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
         'DPPH_mean': [0.588, 0.623, 0.490, 0.318, 0.512],
         'DPPH_std': [0.045, 0.038, 0.042, 0.051, 0.048],
         'DPPH_ci_lower': [0.500, 0.550, 0.410, 0.220, 0.420],
@@ -89,7 +89,7 @@ def generate_figure2_revised():
     ax.set_ylabel('R² Score', fontsize=14, fontweight='bold')
     ax.set_title('DPPH Assay (n=70)', fontsize=15, fontweight='bold')
     ax.set_xticks(x_pos)
-    ax.set_xticklabels(['FragMoE', 'Random\nForest', 'XGBoost', 'SVR-RBF', 'PLS'],
+    ax.set_xticklabels(['MK-Ensemble', 'Random\nForest', 'XGBoost', 'SVR-RBF', 'PLS'],
                        fontsize=10)
     ax.set_ylim(0, 0.8)
     ax.axhline(y=0.5, color='gray', linestyle='--', alpha=0.5, linewidth=1)
@@ -117,7 +117,7 @@ def generate_figure2_revised():
     ax.set_ylabel('R² Score', fontsize=14, fontweight='bold')
     ax.set_title('ABTS Assay (n=42)', fontsize=15, fontweight='bold')
     ax.set_xticks(x_pos)
-    ax.set_xticklabels(['FragMoE', 'Random\nForest', 'XGBoost', 'SVR-RBF', 'PLS'],
+    ax.set_xticklabels(['MK-Ensemble', 'Random\nForest', 'XGBoost', 'SVR-RBF', 'PLS'],
                        fontsize=10)
     ax.set_ylim(0, 1.0)
     ax.axhline(y=0.5, color='gray', linestyle='--', alpha=0.5, linewidth=1)
@@ -320,7 +320,7 @@ def generate_table_revisions():
 
     # Table 1 (修订版) - 仅DPPH和ABTS
     table1 = pd.DataFrame({
-        'Model': ['FragMoE', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
+        'Model': ['MK-Ensemble', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
         'DPPH_R2': ['0.588 ± 0.045', '0.623 ± 0.038', '0.490 ± 0.042', '0.318 ± 0.051', '0.512 ± 0.048'],
         'DPPH_95CI': ['[0.500, 0.676]', '[0.550, 0.696]', '[0.410, 0.570]', '[0.220, 0.416]', '[0.420, 0.604]'],
         'ABTS_R2': ['0.867 ± 0.028', '0.795 ± 0.025', '0.715 ± 0.032', '0.253 ± 0.041', '0.725 ± 0.035'],
@@ -332,8 +332,8 @@ def generate_table_revisions():
 
     # Table S1 - 统计检验
     table_s1 = pd.DataFrame({
-        'Comparison': ['FragMoE vs Random Forest', 'FragMoE vs XGBoost',
-                       'FragMoE vs SVR-RBF', 'FragMoE vs PLS'],
+        'Comparison': ['MK-Ensemble vs Random Forest', 'MK-Ensemble vs XGBoost',
+                       'MK-Ensemble vs SVR-RBF', 'MK-Ensemble vs PLS'],
         'DPPH_pvalue': ['0.596 (ns)', '0.019 (*)', '0.095 (ns)', '0.018 (*)'],
         'ABTS_pvalue': ['0.629 (ns)', '0.014 (*)', '<0.001 (***)', '0.072 (ns)'],
     })
@@ -343,7 +343,7 @@ def generate_table_revisions():
 
     # Table S2 - FRAP降级为Supplementary
     table_s2 = pd.DataFrame({
-        'Model': ['FragMoE', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
+        'Model': ['MK-Ensemble', 'Random Forest', 'XGBoost', 'SVR-RBF', 'PLS'],
         'FRAP_R2': ['0.789 ± 0.055', '0.727 ± 0.048', '0.075 ± 0.062',
                     '0.687 ± 0.052', '0.690 ± 0.050'],
         'Note': ['Exploratory (n=16)', 'Exploratory (n=16)', 'Exploratory (n=16)',
@@ -356,7 +356,7 @@ def generate_table_revisions():
     # Table S3 - 消融实验
     table_s3 = pd.DataFrame({
         'Configuration': [
-            'FragMoE (Full)',
+            'MK-Ensemble (Full)',
             'w/o Attention Router',
             'w/o Fragmentation',
             'w/o Multi-Kernel',

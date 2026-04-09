@@ -30,7 +30,7 @@ OUTPUT_PATH = Path(__file__).parent
 
 # 色盲友好的颜色方案
 colors = {
-    'FragMoE_Base': '#E8E8E8',      # 浅灰 - Base
+    'MK-Ensemble_Base': '#E8E8E8',      # 浅灰 - Base
     'Hybrid': '#A8D5BA',             # 浅绿 - Hybrid
     'V2': '#5DADE2',                 # 蓝色 - V2
     'Stacking': '#E74C3C',           # 红色 - Stacking (best)
@@ -159,9 +159,9 @@ def generate_figure_s2_model_evolution():
 
     # 绘制演进流程
     stages = [
-        ('FragMoE\n(Base)', 1, 1.5, colors['FragMoE_Base'],
+        ('MK-Ensemble\n(Base)', 1, 1.5, colors['MK-Ensemble_Base'],
          'Multi-kernel SVR\nBasic fragment analysis'),
-        ('Hybrid\nFragMoE', 3, 1.5, colors['Hybrid'],
+        ('Hybrid\nMK-Ensemble', 3, 1.5, colors['Hybrid'],
          '+ Fragment features\n+ Attention mechanism'),
         ('V2-Domain\nAdapted', 5.5, 1.5, colors['V2'],
          '+ Assay-specific tuning\n+ Domain adaptation'),
@@ -186,7 +186,7 @@ def generate_figure_s2_model_evolution():
             ax1.annotate('', xy=(stages[i+1][1]-0.4, y), xytext=(x+0.4, y),
                         arrowprops=dict(arrowstyle='->', color='black', lw=2))
 
-    ax1.set_title('FragMoE Model Evolution Pathway', fontsize=15,
+    ax1.set_title('MK-Ensemble Model Evolution Pathway', fontsize=15,
                  fontweight='bold', pad=20)
 
     # === 第二行：性能提升轨迹 ===
@@ -268,7 +268,7 @@ def generate_figure_s2_model_evolution():
     ax4 = fig.add_subplot(gs[2, :])
 
     ablation_data = pd.DataFrame({
-        'Component': ['FragMoE\n(Base)', 'w/o Fragment\nFeatures', 'w/o Domain\nAdaptation',
+        'Component': ['MK-Ensemble\n(Base)', 'w/o Fragment\nFeatures', 'w/o Domain\nAdaptation',
                      'w/o Stacking\n(Individual)', 'Full Stacking\nEnsemble'],
         'DPPH': [0.455, 0.520, 0.546, 0.641, 0.846],
         'ABTS': [0.735, 0.790, 0.850, 0.892, 0.920],
@@ -310,7 +310,7 @@ def generate_figure_s2_model_evolution():
             fontweight='bold', color='green',
             bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
 
-    fig.suptitle('Figure S2: FragMoE Model Evolution and Ablation Study',
+    fig.suptitle('Figure S2: MK-Ensemble Model Evolution and Ablation Study',
                  fontsize=16, fontweight='bold', y=0.98)
 
     plt.savefig(OUTPUT_PATH / 'FigureS2_model_evolution.pdf', dpi=300, bbox_inches='tight')
@@ -325,8 +325,8 @@ def generate_tables_final():
     # Table 1 (Final): 主结果
     table1 = pd.DataFrame({
         'Model': [
-            'FragMoE (Base)',
-            'HybridFragMoE',
+            'MK-Ensemble (Base)',
+            'HybridMKEnsemble',
             'V2-DomainAdapted',
             'Stacking Ensemble',
             'Random Forest',
@@ -354,8 +354,8 @@ def generate_tables_final():
 
     # Table S2: FRAP Exploratory (Stacking also performs well)
     table_s2 = pd.DataFrame({
-        'Model': ['Stacking Ensemble', 'V2-DomainAdapted', 'HybridFragMoE',
-                 'FragMoE (Base)', 'Random Forest'],
+        'Model': ['Stacking Ensemble', 'V2-DomainAdapted', 'HybridMKEnsemble',
+                 'MK-Ensemble (Base)', 'Random Forest'],
         'FRAP_R2': ['0.920', '0.867', '0.900', '0.779', '0.799'],
         'FRAP_95CI': ['[0.82, 1.00]', '[0.77, 0.96]', '[0.80, 1.00]',
                      '[0.68, 0.88]', '[0.71, 0.89]'],
@@ -368,7 +368,7 @@ def generate_tables_final():
     # Table S3 (Final): Complete Ablation with Evolution
     table_s3 = pd.DataFrame({
         'Stage': [
-            '1. FragMoE (Base)',
+            '1. MK-Ensemble (Base)',
             '2. Hybrid (+Fragments)',
             '3. V2 (+Domain Adapt)',
             '4. Stacking (+Ensemble)',
@@ -392,7 +392,7 @@ def generate_tables_final():
     # Table S4: Improvement Summary
     table_s4 = pd.DataFrame({
         'Comparison': [
-            'Stacking vs FragMoE (Base)',
+            'Stacking vs MK-Ensemble (Base)',
             'Stacking vs Hybrid',
             'Stacking vs V2',
             'Stacking vs RF (Best Baseline)',
@@ -412,7 +412,7 @@ if __name__ == '__main__':
     print()
     print("Key Results:")
     print("  Stacking Ensemble: DPPH=0.846, ABTS=0.920, FRAP=0.920")
-    print("  vs FragMoE Base:  DPPH=0.455, ABTS=0.735, FRAP=0.779")
+    print("  vs MK-Ensemble Base:  DPPH=0.455, ABTS=0.735, FRAP=0.779")
     print("  Improvement: DPPH +85.9%, ABTS +25.2%")
     print()
     print("=" * 70)

@@ -1,5 +1,5 @@
 """
-src/fragmoe/explainability.py
+src/mk_ensemble/explainability.py
 SAC（Structure-Activity Contribution）可解释性模块
 
 方法：Integrated Gradients（积分梯度）
@@ -8,7 +8,7 @@ SAC（Structure-Activity Contribution）可解释性模块
   - 贡献度：Fragment嵌入维度对预测值的归因之和
 
 用法：
-    from src.fragmoe.explainability import fragment_ig_attribution
+    from src.mk_ensemble.explainability import fragment_ig_attribution
     attribs = fragment_ig_attribution(model, frag_emb, mol_idx, task_idx=0, n_steps=50)
     # attribs: [n_frags]  每个Fragment对task_idx任务预测的贡献度
 """
@@ -65,7 +65,7 @@ def fragment_ig_attribution(
     Integrated Gradients：计算每个Fragment嵌入对指定任务预测的贡献度。
 
     参数：
-        model:      FragMoE模型（eval mode）
+        model:      MKEnsemble模型（eval mode）
         frag_emb:   [n_frags, d_frag]  GIN编码的Fragment嵌入（已计算，detach）
         mol_idx:    [n_frags]           每个Fragment属于哪个分子
         task_idx:   目标任务索引（0=DPPH, 1=ABTS, 2=FRAP）

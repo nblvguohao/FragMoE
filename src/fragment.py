@@ -1,5 +1,5 @@
 """
-src/fragmoe/fragment.py
+src/mk_ensemble/fragment.py
 Fragment分解模块：将分子SMILES分解为Murcko骨架 + BRICS侧链碎片
 
 策略：

@@ -53,7 +53,7 @@
 
 ### 1. 应用术语修改
 ```bash
-cd fragmoe_repo/manuscript_revisions
+cd mk_ensemble_repo/manuscript_revisions
 python apply_revisions.py --manuscript path/to/your/manuscript.tex --output revised_manuscript.tex
 ```
 
@@ -96,7 +96,7 @@ python apply_revisions.py --manuscript path/to/your/manuscript.tex --output revi
 
 ### 1. "性能声称夸大"
 **回应**: 
-> "We have revised the performance claims to accurately reflect the nested CV results. FragMoE achieves comparable performance to Random Forest on DPPH and superior performance on ABTS. The core contribution is interpretability, not marginal R² improvements."
+> "We have revised the performance claims to accurately reflect the nested CV results. MK-Ensemble achieves comparable performance to Random Forest on DPPH and superior performance on ABTS. The core contribution is interpretability, not marginal R² improvements."
 
 ### 2. "FRAP样本量问题"
 **回应**:

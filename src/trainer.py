@@ -1,6 +1,6 @@
 """
-src/fragmoe/trainer.py
-FragMoE 训练器
+src/mk_ensemble/trainer.py
+MKEnsemble 训练器
 
 - 多任务回归（DPPH / ABTS / FRAP）
 - LOOCV 评估（数据量 < 20 时自动切换）
@@ -19,7 +19,7 @@ from scipy.stats import pearsonr
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
 from .fragment import smiles_to_fragments
-from .model import FragMoE
+from .model import MKEnsemble
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -51,7 +51,7 @@ def build_batch(smiles_list: list[str], targets: np.ndarray, indices: list[int]
     return frag_batch, mol_idx_t, y
 
 
-def train_epoch(model: FragMoE, optimizer, smiles_list, targets, train_idx):
+def train_epoch(model: MKEnsemble, optimizer, smiles_list, targets, train_idx):
     """单epoch训练，返回平均loss"""
     model.train()
     frag_batch, mol_idx_t, y = build_batch(smiles_list, targets, train_idx)
@@ -74,7 +74,7 @@ def train_epoch(model: FragMoE, optimizer, smiles_list, targets, train_idx):
 import torch.nn.functional as F
 
 
-def evaluate(model: FragMoE, smiles_list, targets, val_idx):
+def evaluate(model: MKEnsemble, smiles_list, targets, val_idx):
     """评估，返回每任务的预测值"""
     model.eval()
     with torch.no_grad():
@@ -123,7 +123,7 @@ def run_loocv(smiles_list, targets, task_names,
         val_idx   = [leave_out]
 
         # 初始化新模型
-        model = FragMoE(
+        model = MKEnsemble(
             n_tasks=len(task_names),
             d_frag=d_frag,
             n_experts=n_experts,
@@ -192,7 +192,7 @@ def run_kfold_cv(smiles_list, targets, task_names,
         if verbose:
             print(f"\n  Fold {fold_i+1}/{n_folds}: train={len(train_idx)}, val={len(val_idx)}")
 
-        model = FragMoE(
+        model = MKEnsemble(
             n_tasks=len(task_names),
             d_frag=d_frag,
             n_experts=n_experts,

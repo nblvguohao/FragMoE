@@ -1,10 +1,10 @@
-# FragMoE Dataset
+# MK-Ensemble Dataset
 
 ## Overview
 
-This directory contains the curated datasets for the JAFC paper:
+This directory contains the curated datasets for the Journal of Cheminformatics paper:
 
-> **Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from *Polygonatum cyrtonema*: Insights from Interpretable Machine Learning and Network Pharmacology**
+> **MK-Ensemble: Fragment-based Multi-Kernel Ensemble for Interpretable SAR Modeling**
 
 ## Directory Structure
 
@@ -67,12 +67,10 @@ CC-BY-4.0 (See LICENSE.txt in repository root)
 ## Citation
 
 ```bibtex
-@article{fragmoe2026,
-  title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from
-         Polygonatum cyrtonema: Insights from Interpretable Machine Learning and
-         Network Pharmacology},
+@article{mkensemble2026,
+  title={MK-Ensemble: Fragment-based Multi-Kernel Ensemble for Interpretable SAR Modeling},
   author={Lv, Guohao and Gu, Lichuan},
-  journal={Journal of Agricultural and Food Chemistry},
+  journal={Journal of Cheminformatics},
   year={2026}
 }
 ```

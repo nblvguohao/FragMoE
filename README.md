@@ -60,7 +60,7 @@ Integrated Gradients attribution reveals:
 ## Repository Structure
 
 ```
-fragmoe/
+mk_ensemble/
 ├── data/                       # Curated datasets
 │   ├── 01_dataset/            # 91 compounds, 128 activity records
 │   ├── 02_structures/         # 3D molecular structures (SDF)
@@ -73,7 +73,7 @@ fragmoe/
 │   ├── fragment.py            # BRICS decomposition
 │   ├── model.py               # Core architectures
 │   ├── model_router.py        # Multi-assay routing
-│   ├── train_hybrid_fragmoe.py # MK-Ensemble training
+│   ├── train_hybrid_mkensemble.py # MK-Ensemble training
 │   └── trainer.py             # Training utilities
 ├── notebooks/                  # Jupyter analysis notebooks
 ├── results/                    # Generated figures and outputs

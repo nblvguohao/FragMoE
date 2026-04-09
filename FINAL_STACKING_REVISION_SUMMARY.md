@@ -1,4 +1,4 @@
-# FragMoE 最终修订总结 - Stacking Ensemble版本
+# MK-Ensemble 最终修订总结 - Stacking Ensemble版本
 
 ## 核心决策：使用Stacking Ensemble作为主结果
 
@@ -21,7 +21,7 @@
 ### 模型演进路径
 | 阶段 | DPPH R² | ABTS R² | 关键改进 |
 |------|---------|---------|----------|
-| FragMoE (Base) | 0.455 | 0.735 | 多核SVR |
+| MK-Ensemble (Base) | 0.455 | 0.735 | 多核SVR |
 | Hybrid | 0.546 | 0.882 | +片段特征 |
 | V2-DomainAdapted | 0.641 | 0.892 | +域适应 |
 | **Stacking** | **0.846** | **0.920** | **+模型集成** |
@@ -63,18 +63,18 @@ revised_figures/
 
 ### 1. Abstract 更新
 **原文**：
-> FragMoE achieved stronger predictive performance (DPPH: R² = 0.655, ABTS: R² = 0.887) than baseline methods.
+> MK-Ensemble achieved stronger predictive performance (DPPH: R² = 0.655, ABTS: R² = 0.887) than baseline methods.
 
 **修改为**：
-> Through systematic optimization from FragMoE base to Stacking Ensemble, we achieved significant performance improvements (DPPH: R² = 0.846 [+85.9%], ABTS: R² = 0.920 [+25.2%]) compared to baseline methods, with particularly strong results on ABTS assay (+15.7% vs Random Forest).
+> Through systematic optimization from MK-Ensemble base to Stacking Ensemble, we achieved significant performance improvements (DPPH: R² = 0.846 [+85.9%], ABTS: R² = 0.920 [+25.2%]) compared to baseline methods, with particularly strong results on ABTS assay (+15.7% vs Random Forest).
 
 ### 2. Methods 新增章节
 **添加 "Model Optimization" 小节**：
-> We developed four progressively optimized versions: (1) FragMoE Base with multi-kernel SVR; (2) HybridFragMoE incorporating fragment-level features; (3) V2-DomainAdapted with assay-specific hyperparameter tuning; and (4) Stacking Ensemble combining all versions with optimal weighting (see Figure S2).
+> We developed four progressively optimized versions: (1) MK-Ensemble Base with multi-kernel SVR; (2) HybridMK-Ensemble incorporating fragment-level features; (3) V2-DomainAdapted with assay-specific hyperparameter tuning; and (4) Stacking Ensemble combining all versions with optimal weighting (see Figure S2).
 
 ### 3. Results 修改
 **主结果段落**：
-> The Stacking Ensemble achieved R² = 0.846 (DPPH) and R² = 0.920 (ABTS), representing 85.9% and 25.2% improvements over the base FragMoE model, respectively. Compared to the best baseline (Random Forest), Stacking Ensemble showed +2.9% improvement on DPPH and +15.7% on ABTS (both statistically significant, p < 0.05).
+> The Stacking Ensemble achieved R² = 0.846 (DPPH) and R² = 0.920 (ABTS), representing 85.9% and 25.2% improvements over the base MK-Ensemble model, respectively. Compared to the best baseline (Random Forest), Stacking Ensemble showed +2.9% improvement on DPPH and +15.7% on ABTS (both statistically significant, p < 0.05).
 
 ### 4. 消融实验展示
 **使用 Table S3**：
@@ -90,7 +90,7 @@ revised_figures/
 ## 回应审稿意见的策略
 
 ### 针对"性能声称夸大"
-> "We have conducted comprehensive model optimization from base FragMoE to Stacking Ensemble. The final Stacking Ensemble achieves R² = 0.846 (DPPH) and R² = 0.920 (ABTS), with significant improvements over both our base model (+85.9% and +25.2%) and baseline methods (+2.9% and +15.7%). The complete optimization process is documented in Figure S2 and Table S3."
+> "We have conducted comprehensive model optimization from base MK-Ensemble to Stacking Ensemble. The final Stacking Ensemble achieves R² = 0.846 (DPPH) and R² = 0.920 (ABTS), with significant improvements over both our base model (+85.9% and +25.2%) and baseline methods (+2.9% and +15.7%). The complete optimization process is documented in Figure S2 and Table S3."
 
 ### 针对"缺乏消融实验"
 > "We have added comprehensive ablation studies (Table S3 and Figure S2) demonstrating the contribution of each component: fragment features (+20%), domain adaptation (+17%), and ensemble stacking (+32%). Each stage shows clear incremental improvements, validating our design decisions."

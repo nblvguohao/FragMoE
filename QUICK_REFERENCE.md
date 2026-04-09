@@ -7,7 +7,7 @@
 |-------|---------|---------|------|
 | Stacking Ensemble | 0.846 | 0.920 | **主结果** |
 | Random Forest | 0.822 | 0.795 | 最佳基线 |
-| FragMoE Base | 0.455 | 0.735 | 消融起点 |
+| MK-Ensemble Base | 0.455 | 0.735 | 消融起点 |
 
 ### 提升幅度
 - **DPPH**: +85.9% (Base→Stacking), +2.9% (vs RF)
@@ -18,7 +18,7 @@
 ## Abstract修改模板
 
 ```
-We developed FragMoE (Fragment-based Multi-Kernel Ensemble), an interpretable 
+We developed MK-Ensemble (Fragment-based Multi-Kernel Ensemble), an interpretable 
 machine learning framework that underwent systematic optimization through four 
 stages: Base (multi-kernel SVR), Hybrid (+fragment features), V2 (+domain 
 adaptation), and Stacking Ensemble (+model ensemble). The final Stacking 
@@ -60,7 +60,7 @@ Nrf2/HO-1 pathway involvement with Keap1 as the hub target.
 ```
 The Stacking Ensemble achieved the highest predictive performance across 
 all assays (Table 1). On DPPH (n=70), Stacking Ensemble achieved R² = 0.846 
-[95% CI: 0.78, 0.91], representing an 85.9% improvement over FragMoE Base 
+[95% CI: 0.78, 0.91], representing an 85.9% improvement over MK-Ensemble Base 
 (R² = 0.455) and a 2.9% improvement over Random Forest (R² = 0.822, p < 0.05). 
 On ABTS (n=42), Stacking Ensemble achieved R² = 0.920 [95% CI: 0.87, 0.97], 
 25.2% higher than Base and 15.7% higher than Random Forest (p < 0.001). 
@@ -97,7 +97,7 @@ analysis from Hybrid/V2 stages."
 ## 文件位置速查
 
 ```
-fragmoe_repo/revised_figures/
+mk_ensemble_repo/revised_figures/
 ├── Figure2_final_stacking.pdf       # 主结果
 ├── FigureS2_model_evolution.pdf     # 演进路径
 ├── Table1_final_main_results.csv    # 主表

@@ -1,7 +1,7 @@
 # 最新服务器实验结果分析（data/lgh/liuning1）
 
 ## 数据来源
-- **服务器路径**: `/data/lgh/liuning1/fragmoe/`
+- **服务器路径**: `/data/lgh/liuning1/mk_ensemble/`
 - **同步时间**: 2026-04-09
 
 ---
@@ -18,7 +18,7 @@
 
 ### 2. 多模型对比
 
-| Assay | Baseline Best | FragMoE | HybridFragMoE | **Stacking** | Improvement |
+| Assay | Baseline Best | MK-Ensemble | HybridMK-Ensemble | **Stacking** | Improvement |
 |-------|---------------|---------|---------------|--------------|-------------|
 | DPPH | 0.8217 | 0.4549 | 0.5459 | **0.8464** | +39.2% |
 | ABTS | 0.9695 | 0.7346 | 0.8815 | **0.92** | +18.5% |
@@ -39,14 +39,14 @@
 ## 关键发现
 
 ### 1. 模型演进
-- **FragMoE**: 基础版本（R²: DPPH=0.45, ABTS=0.73）
-- **HybridFragMoE**: 混合版本（R²: DPPH=0.55, ABTS=0.88）
+- **MK-Ensemble**: 基础版本（R²: DPPH=0.45, ABTS=0.73）
+- **HybridMK-Ensemble**: 混合版本（R²: DPPH=0.55, ABTS=0.88）
 - **V2-DomainAdapted**: 域适应版本（R²: DPPH=0.64, ABTS=0.89）← **推荐**
 - **Stacking Ensemble**: 集成版本（R²: DPPH=0.85, ABTS=0.92）← **最佳**
 
 ### 2. 性能提升路径
 ```
-FragMoE (0.45) → Hybrid (0.55) → V2-DomainAdapted (0.64) → Stacking (0.85)
+MK-Ensemble (0.45) → Hybrid (0.55) → V2-DomainAdapted (0.64) → Stacking (0.85)
                  ↑ 20%          ↑ 16%                  ↑ 31%
 ```
 
@@ -74,23 +74,23 @@ FragMoE (0.45) → Hybrid (0.55) → V2-DomainAdapted (0.64) → Stacking (0.85)
 ### 2. 修订性能声称
 
 **原文**:
-> FragMoE achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
+> MK-Ensemble achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
 
 **修改为**（基于新结果）:
-> The optimized FragMoE (V2-DomainAdapted) achieved strong predictive performance (DPPH: R² = 0.641, ABTS: R² = 0.892, FRAP: R² = 0.867), with the stacking ensemble further improving results to R² = 0.846 (DPPH) and R² = 0.920 (ABTS), representing 39.2% and 18.5% improvements over baseline methods, respectively.
+> The optimized MK-Ensemble (V2-DomainAdapted) achieved strong predictive performance (DPPH: R² = 0.641, ABTS: R² = 0.892, FRAP: R² = 0.867), with the stacking ensemble further improving results to R² = 0.846 (DPPH) and R² = 0.920 (ABTS), representing 39.2% and 18.5% improvements over baseline methods, respectively.
 
 ### 3. 添加模型演进说明
 
 在Methods中添加：
-> We developed three progressively optimized versions of FragMoE: (1) the base FragMoE with multi-kernel SVR; (2) HybridFragMoE incorporating fragment-level features; and (3) V2-DomainAdapted with assay-specific hyperparameter optimization. The final stacking ensemble combines all three versions with baseline methods for optimal performance.
+> We developed three progressively optimized versions of MK-Ensemble: (1) the base MK-Ensemble with multi-kernel SVR; (2) HybridMK-Ensemble incorporating fragment-level features; and (3) V2-DomainAdapted with assay-specific hyperparameter optimization. The final stacking ensemble combines all three versions with baseline methods for optimal performance.
 
 ### 4. 更新表格
 
 **Table 1 (修订版)**:
 | Model | DPPH (R²) | ABTS (R²) | FRAP (R²) |
 |-------|-----------|-----------|-----------|
-| FragMoE (Base) | 0.455 | 0.735 | 0.779 |
-| HybridFragMoE | 0.546 | 0.882 | 0.900 |
+| MK-Ensemble (Base) | 0.455 | 0.735 | 0.779 |
+| HybridMK-Ensemble | 0.546 | 0.882 | 0.900 |
 | **V2-DomainAdapted** | **0.641** | **0.892** | **0.867** |
 | Stacking Ensemble | 0.846 | 0.920 | 0.920 |
 | Random Forest | 0.623 | 0.795 | 0.727 |

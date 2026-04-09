@@ -1,7 +1,7 @@
 # Push to GitHub Instructions
 
 ## Repository
-**URL**: https://github.com/nblvguohao/FragMoE.git
+**URL**: https://github.com/nblvguohao/MK-Ensemble.git
 
 ## Steps
 
@@ -9,13 +9,13 @@
 ```bash
 cd /path/to/github_release
 git init
-git remote add origin https://github.com/nblvguohao/FragMoE.git
+git remote add origin https://github.com/nblvguohao/MK-Ensemble.git
 ```
 
 ### 2. Add Files
 ```bash
 git add .
-git commit -m "Initial release: FragMoE JAFC submission data
+git commit -m "Initial release: MK-Ensemble JAFC submission data
 
 - Dataset: 91 compounds, 128 activity records
 - Model performance: DPPH R²=0.655, ABTS R²=0.887

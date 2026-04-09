@@ -1,6 +1,6 @@
 """
-src/fragmoe/model.py
-FragMoE 核心模型
+src/mk_ensemble/model.py
+MKEnsemble 核心模型
 
 架构：
   SMILES
@@ -118,11 +118,11 @@ class Router(nn.Module):
 
         return weights, load
 
-# ─── FragMoE 主模型 ────────────────────────────────────────────────────────────
+# ─── MKEnsemble 主模型 ─────────────────────────────────────────────────────────
 
-class FragMoE(nn.Module):
+class MKEnsemble(nn.Module):
     """
-    Fragment Mixture-of-Experts 分子属性预测模型
+    Fragment Multi-Kernel Ensemble 分子属性预测模型
 
     参数：
       n_tasks:    输出任务数（DPPH=1, ABTS=1, FRAP=1 → 3）
@@ -237,7 +237,7 @@ class FragMoE(nn.Module):
 if __name__ == "__main__":
     import sys
     sys.path.insert(0, str(__import__("pathlib").Path(__file__).parent.parent.parent))
-    from src.fragmoe.fragment import decompose_molecule
+    from src.mk_ensemble.fragment import decompose_molecule
     from torch_geometric.data import Batch
 
     # 测试：2个分子，每个分解为若干Fragment
@@ -256,7 +256,7 @@ if __name__ == "__main__":
     frag_batch = Batch.from_data_list(all_frags)
     mol_idx_t  = torch.tensor(mol_idx, dtype=torch.long)
 
-    model = FragMoE(n_tasks=3, d_frag=128, n_experts=8)
+    model = MKEnsemble(n_tasks=3, d_frag=128, n_experts=8)
     model.eval()
     with torch.no_grad():
         preds, lb_loss = model(frag_batch, mol_idx_t)
@@ -265,4 +265,4 @@ if __name__ == "__main__":
     print(f"Output preds shape: {preds.shape}")  # [2, 3]
     print(f"preds: {preds}")
     print(f"lb_loss: {lb_loss.item():.4f}")
-    print("FragMoE model test PASSED ✓")
+    print("MKEnsemble model test PASSED ✓")

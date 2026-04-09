@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-训练HybridFragMoE模型
+训练HybridMKEnsemble模型
 使用现有数据集，目标：DPPH R² > 0.65
 """
 
@@ -79,7 +79,7 @@ def fragment_molecule(smiles):
     return fragments[:10]  # 最多10个片段
 
 class SimpleHybridModel(nn.Module):
-    """简化版HybridFragMoE用于快速训练"""
+    """简化版HybridMKEnsemble用于快速训练"""
     def __init__(self, input_dim=9, hidden_dim=128):
         super().__init__()
         
@@ -192,7 +192,7 @@ def prepare_data(assay_name):
 def train_model(assay_name, epochs=200, lr=0.001, device='cuda'):
     """训练模型"""
     print(f"\n{'='*60}")
-    print(f"训练HybridFragMoE - {assay_name}")
+    print(f"训练HybridMKEnsemble - {assay_name}")
     print(f"{'='*60}")
     
     # 准备数据
@@ -268,7 +268,7 @@ def train_model(assay_name, epochs=200, lr=0.001, device='cuda'):
                 'scaler_global': scaler_g,
                 'scaler_fragment': scaler_f,
                 'assay': assay_name
-            }, RESULTS_ROOT / f'hybrid_fragmoe_{assay_name}.pt')
+            }, RESULTS_ROOT / f'hybrid_mkensemble_{assay_name}.pt')
         else:
             patience_counter += 1
             if patience_counter >= patience:
@@ -276,7 +276,7 @@ def train_model(assay_name, epochs=200, lr=0.001, device='cuda'):
                 break
     
     # 加载最佳模型并评估
-    checkpoint = torch.load(RESULTS_ROOT / f'hybrid_fragmoe_{assay_name}.pt')
+    checkpoint = torch.load(RESULTS_ROOT / f'hybrid_mkensemble_{assay_name}.pt')
     model.load_state_dict(checkpoint['model_state_dict'])
     
     model.eval()
@@ -291,7 +291,7 @@ def train_model(assay_name, epochs=200, lr=0.001, device='cuda'):
     
     results = {
         'assay': assay_name,
-        'model': 'HybridFragMoE',
+        'model': 'HybridMKEnsemble',
         'n_samples': len(y),
         'R2': float(r2),
         'RMSE': float(rmse),

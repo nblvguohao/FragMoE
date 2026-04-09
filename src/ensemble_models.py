@@ -1,5 +1,5 @@
 """
-Stacking Ensemble: FragMoE + RF + XGBoost + GIN
+Stacking Ensemble: MKEnsemble + RF + XGBoost + GIN
 预期性能提升: R² = 0.75-0.80
 """
 
@@ -19,7 +19,7 @@ import joblib
 class StackingEnsemble:
     """
     Stacking集成学习框架
-    Level 1: FragMoE, RandomForest, XGBoost, GIN
+    Level 1: MKEnsemble, RandomForest, XGBoost, GIN
     Level 2: Ridge回归作为meta-learner
     """
     def __init__(self, random_state: int = 42):
@@ -255,9 +255,9 @@ def run_ensemble_experiment(
         model.fit(X, y)
         ensemble.add_level1_model(model_name, model)
     
-    # TODO: 添加FragMoE和HybridFragMoE（需要先训练）
-    # ensemble.add_level1_model('FragMoE', fragmoe_model)
-    # ensemble.add_level1_model('HybridFragMoE', hybrid_model)
+    # TODO: 添加MKEnsemble和HybridMKEnsemble（需要先训练）
+    # ensemble.add_level1_model('MKEnsemble', mkensemble_model)
+    # ensemble.add_level1_model('HybridMKEnsemble', hybrid_model)
     
     # 评估Stacking集成（LOOCV）
     print("\nEvaluating Stacking Ensemble with LOOCV...")

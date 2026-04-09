@@ -1,4 +1,4 @@
-# FragMoE 论文修改总结报告
+# MK-Ensemble 论文修改总结报告
 
 ## 修改完成状态
 
@@ -40,7 +40,7 @@
 - **状态**: ✅ 完成
 - **输出**: `TableS3_ablation_study.csv`
 - **包含**:
-  - FragMoE (Full)
+  - MK-Ensemble (Full)
   - w/o Attention Router
   - w/o Fragmentation
   - w/o Multi-Kernel
@@ -116,20 +116,20 @@ FINAL_REVISION_PLAN.md              # 最终修订方案
 ### 1. 性能声称修改
 
 **原文**:
-> FragMoE achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
+> MK-Ensemble achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
 
 **修改为**:
-> FragMoE achieved comparable or superior predictive performance compared to baseline methods (DPPH: R² = 0.588 vs Random Forest R² = 0.623, p = 0.596; ABTS: R² = 0.867 vs Random Forest R² = 0.795, p = 0.629), with particularly strong results on ABTS assay.
+> MK-Ensemble achieved comparable or superior predictive performance compared to baseline methods (DPPH: R² = 0.588 vs Random Forest R² = 0.623, p = 0.596; ABTS: R² = 0.867 vs Random Forest R² = 0.795, p = 0.629), with particularly strong results on ABTS assay.
 
 ### 2. 统计显著性说明
 
 **新增**:
-> Statistical comparisons using Wilcoxon signed-rank tests showed that FragMoE performed significantly better than XGBoost on both DPPH (p = 0.019) and ABTS (p = 0.014). Performance differences between FragMoE and Random Forest were not statistically significant (DPPH: p = 0.596; ABTS: p = 0.629).
+> Statistical comparisons using Wilcoxon signed-rank tests showed that MK-Ensemble performed significantly better than XGBoost on both DPPH (p = 0.019) and ABTS (p = 0.014). Performance differences between MK-Ensemble and Random Forest were not statistically significant (DPPH: p = 0.596; ABTS: p = 0.629).
 
 ### 3. 局限性讨论
 
 **新增**:
-> While FragMoE demonstrated strong performance on ABTS, its performance on DPPH was comparable to but not significantly better than Random Forest. The FRAP assay dataset (n = 16) is too small for reliable statistical inference; these results should be considered exploratory.
+> While MK-Ensemble demonstrated strong performance on ABTS, its performance on DPPH was comparable to but not significantly better than Random Forest. The FRAP assay dataset (n = 16) is too small for reliable statistical inference; these results should be considered exploratory.
 
 ---
 
@@ -160,10 +160,10 @@ FINAL_REVISION_PLAN.md              # 最终修订方案
 ## Rebuttal 核心论点
 
 ### 针对"性能声称夸大"
-> "We thank the reviewers for pointing out the discrepancy in our performance claims. Upon re-evaluation using proper nested cross-validation, we found that FragMoE achieves **comparable** performance to Random Forest on DPPH and **superior** performance on ABTS. We have revised the manuscript to accurately reflect these findings. The core contribution of FragMoE remains its **interpretability at the fragment level**, which traditional methods cannot provide."
+> "We thank the reviewers for pointing out the discrepancy in our performance claims. Upon re-evaluation using proper nested cross-validation, we found that MK-Ensemble achieves **comparable** performance to Random Forest on DPPH and **superior** performance on ABTS. We have revised the manuscript to accurately reflect these findings. The core contribution of MK-Ensemble remains its **interpretability at the fragment level**, which traditional methods cannot provide."
 
 ### 针对"缺乏消融实验"
-> "We have conducted comprehensive ablation studies (Table S3) showing that removing the attention-based router decreases performance by 7.8% on DPPH, and using single-kernel instead of multi-kernel decreases performance by 9.2%. These results confirm that each component of FragMoE contributes to its overall performance."
+> "We have conducted comprehensive ablation studies (Table S3) showing that removing the attention-based router decreases performance by 7.8% on DPPH, and using single-kernel instead of multi-kernel decreases performance by 9.2%. These results confirm that each component of MK-Ensemble contributes to its overall performance."
 
 ### 针对"术语误用"
 > "We acknowledge that our use of 'Mixture-of-Experts' differs from traditional MoE architectures. We have revised the terminology to **'Multi-Kernel Fragment Ensemble'** to more accurately describe our approach."

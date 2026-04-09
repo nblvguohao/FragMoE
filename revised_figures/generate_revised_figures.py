@@ -45,7 +45,7 @@ def generate_figure2_revised():
     # 这里使用模拟数据展示格式，实际运行时应替换为真实结果
 
     data = {
-        'Model': ['FragMoE', 'Random Forest', 'XGBoost', 'SVR'],
+        'Model': ['MK-Ensemble', 'Random Forest', 'XGBoost', 'SVR'],
         'DPPH_mean': [0.685, 0.750, 0.607, 0.589],
         'DPPH_std': [0.045, 0.038, 0.042, 0.051],
         'DPPH_ci_lower': [0.597, 0.676, 0.525, 0.489],
@@ -120,10 +120,10 @@ def generate_figure_s1_ablation():
     """
     data = {
         'Configuration': [
-            'FragMoE (Full)',
-            'FragMoE\n(No Router)',
-            'FragMoE\n(No Fragmentation)',
-            'FragMoE\n(Single Expert)',
+            'MK-Ensemble (Full)',
+            'MK-Ensemble\n(No Router)',
+            'MK-Ensemble\n(No Fragmentation)',
+            'MK-Ensemble\n(Single Expert)',
             'Random Forest',
         ],
         'DPPH_R2': [0.685, 0.642, 0.598, 0.623, 0.750],
@@ -193,7 +193,7 @@ def generate_figure_s2_pretrained():
     """
     data = {
         'Model': [
-            'FragMoE',
+            'MK-Ensemble',
             'ChemBERTa\n(fine-tuned)',
             'Fingerprint\n+ MLP',
             'Random Forest',
@@ -334,7 +334,7 @@ def generate_table_summary():
     """生成汇总表格"""
     # Table 1: 修订后的性能对比
     table1_data = {
-        'Model': ['FragMoE', 'Random Forest', 'XGBoost', 'SVR-RBF'],
+        'Model': ['MK-Ensemble', 'Random Forest', 'XGBoost', 'SVR-RBF'],
         'DPPH_R2': ['0.685 ± 0.045', '0.750 ± 0.038', '0.607 ± 0.042', '0.589 ± 0.051'],
         'DPPH_95CI': ['[0.597, 0.773]', '[0.676, 0.824]', '[0.525, 0.689]', '[0.489, 0.689]'],
         'ABTS_R2': ['0.902 ± 0.028', '0.905 ± 0.025', '0.878 ± 0.032', '0.862 ± 0.041'],
@@ -348,7 +348,7 @@ def generate_table_summary():
     # Table S3: 消融实验
     table_s3_data = {
         'Configuration': [
-            'FragMoE (Full)',
+            'MK-Ensemble (Full)',
             'w/o Router',
             'w/o Fragmentation',
             'w/o Multi-Expert',

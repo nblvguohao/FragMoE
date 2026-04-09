@@ -6,17 +6,17 @@
 
 #### Abstract
 **原文**:
-> We developed FragMoE (Fragment-based Mixture-of-Experts), a machine learning framework...
+> We developed MK-Ensemble (Fragment-based Mixture-of-Experts), a machine learning framework...
 
 **修改为**:
-> We developed FragMoE (Fragment-based Multi-Kernel Ensemble), a machine learning framework...
+> We developed MK-Ensemble (Fragment-based Multi-Kernel Ensemble), a machine learning framework...
 
 #### Introduction
 **原文**:
-> This paper presents FragMoE (Fragment-based Mixture-of-Experts)...
+> This paper presents MK-Ensemble (Fragment-based Mixture-of-Experts)...
 
 **修改为**:
-> This paper presents FragMoE (Fragment-based Multi-Kernel Ensemble)...
+> This paper presents MK-Ensemble (Fragment-based Multi-Kernel Ensemble)...
 
 #### Methods (2.2节标题)
 **原文**:
@@ -37,7 +37,7 @@
 > The multi-kernel approach combines molecular representations without requiring large training sets, and fragment-based interpretability yields chemical insights...
 
 **修改为**:
-> FragMoE employs a multi-kernel ensemble that combines molecular representations without requiring large training sets, and fragment-based interpretability yields chemical insights...
+> MK-Ensemble employs a multi-kernel ensemble that combines molecular representations without requiring large training sets, and fragment-based interpretability yields chemical insights...
 
 ---
 
@@ -45,17 +45,17 @@
 
 ### Abstract - Results部分
 **原文**:
-> FragMoE achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
+> MK-Ensemble achieved stronger predictive performance (DPPH: R² = 0.655 [0.481, 0.766], ABTS: R² = 0.887 [0.785, 0.936]) than baseline methods.
 
 **修改为**:
-> FragMoE achieved comparable or superior predictive performance compared to baseline methods (DPPH: R² = 0.588 vs Random Forest R² = 0.623, p = 0.596; ABTS: R² = 0.867 vs Random Forest R² = 0.795, p = 0.629), with particularly strong results on ABTS assay.
+> MK-Ensemble achieved comparable or superior predictive performance compared to baseline methods (DPPH: R² = 0.588 vs Random Forest R² = 0.623, p = 0.596; ABTS: R² = 0.867 vs Random Forest R² = 0.795, p = 0.629), with particularly strong results on ABTS assay.
 
 ### Results (3.1节)
 **原文**:
-> FragMoE outperformed baseline methods across all assays (Table 1).
+> MK-Ensemble outperformed baseline methods across all assays (Table 1).
 
 **修改为**:
-> FragMoE demonstrated competitive or superior performance compared to baseline methods (Table 1). On ABTS, FragMoE achieved the highest R² (0.867), while on DPPH, performance was comparable to Random Forest (R² = 0.588 vs 0.623, p = 0.596).
+> MK-Ensemble demonstrated competitive or superior performance compared to baseline methods (Table 1). On ABTS, MK-Ensemble achieved the highest R² (0.867), while on DPPH, performance was comparable to Random Forest (R² = 0.588 vs 0.623, p = 0.596).
 
 ---
 
@@ -82,7 +82,7 @@
 
 ### Results (3.1节后添加)
 **新增段落**:
-> Statistical comparisons using Wilcoxon signed-rank tests showed that FragMoE performed significantly better than XGBoost on both DPPH (p = 0.019) and ABTS (p = 0.014), and significantly better than SVR-RBF on ABTS (p < 0.001). Performance differences between FragMoE and Random Forest were not statistically significant on either assay (DPPH: p = 0.596; ABTS: p = 0.629; Table S1).
+> Statistical comparisons using Wilcoxon signed-rank tests showed that MK-Ensemble performed significantly better than XGBoost on both DPPH (p = 0.019) and ABTS (p = 0.014), and significantly better than SVR-RBF on ABTS (p < 0.001). Performance differences between MK-Ensemble and Random Forest were not statistically significant on either assay (DPPH: p = 0.596; ABTS: p = 0.629; Table S1).
 
 ---
 
@@ -90,7 +90,7 @@
 
 ### 添加局限性讨论
 **在Discussion中添加**:
-> **Performance characteristics**: While FragMoE demonstrated strong performance on ABTS, its performance on DPPH was comparable to but not significantly better than Random Forest. This pattern suggests that the advantages of fragment-based modeling may vary depending on the specific antioxidant mechanism. The ABTS assay, involving both hydrogen atom transfer and electron transfer, may benefit more from the multi-kernel approach than DPPH, which primarily measures hydrogen atom transfer.
+> **Performance characteristics**: While MK-Ensemble demonstrated strong performance on ABTS, its performance on DPPH was comparable to but not significantly better than Random Forest. This pattern suggests that the advantages of fragment-based modeling may vary depending on the specific antioxidant mechanism. The ABTS assay, involving both hydrogen atom transfer and electron transfer, may benefit more from the multi-kernel approach than DPPH, which primarily measures hydrogen atom transfer.
 
 > **Sample size limitations**: The dataset size, particularly for FRAP (n = 16), limits the statistical power of our conclusions. Future work will expand the dataset through systematic literature mining to validate the fragment contribution findings across a larger compound library.
 
@@ -102,17 +102,17 @@
 
 ### Figure 2引用
 **原文**:
-> Figure 2 compares FragMoE against baseline methods using coefficient of determination (R²) across three antioxidant assays.
+> Figure 2 compares MK-Ensemble against baseline methods using coefficient of determination (R²) across three antioxidant assays.
 
 **修改为**:
-> Figure 2 compares FragMoE against baseline methods using coefficient of determination (R²) across DPPH and ABTS assays (FRAP results provided as exploratory analysis in Supplementary Table S2).
+> Figure 2 compares MK-Ensemble against baseline methods using coefficient of determination (R²) across DPPH and ABTS assays (FRAP results provided as exploratory analysis in Supplementary Table S2).
 
 ### Figure 3引用
 **原文**:
-> Figure 3: Structure-activity contribution (SAC) heatmap from FragMoE interpretability analysis.
+> Figure 3: Structure-activity contribution (SAC) heatmap from MK-Ensemble interpretability analysis.
 
 **修改为**:
-> Figure 3: Structure-activity contribution heatmap from FragMoE interpretability analysis, showing consistent fragment contribution patterns across DPPH and ABTS assays.
+> Figure 3: Structure-activity contribution heatmap from MK-Ensemble interpretability analysis, showing consistent fragment contribution patterns across DPPH and ABTS assays.
 
 ---
 
@@ -120,10 +120,10 @@
 
 ### Results (3.2节)
 **原文**:
-> The most significant finding from FragMoE interpretability analysis is the marked difference in antioxidant contribution between aglycone cores and glycosylated fragments (Figure 3).
+> The most significant finding from MK-Ensemble interpretability analysis is the marked difference in antioxidant contribution between aglycone cores and glycosylated fragments (Figure 3).
 
 **修改为**:
-> The most significant finding from FragMoE interpretability analysis is the marked difference in antioxidant contribution between aglycone cores and glycosylated fragments, consistently observed across both DPPH and ABTS assays (Figure 3 and Figure S1).
+> The most significant finding from MK-Ensemble interpretability analysis is the marked difference in antioxidant contribution between aglycone cores and glycosylated fragments, consistently observed across both DPPH and ABTS assays (Figure 3 and Figure S1).
 
 **添加**:
 > Cross-assay analysis (Figure S1) confirmed that aglycone cores contributed 3-4 times more than glycosylated fragments in both DPPH and ABTS assays, supporting the robustness of this structure-activity relationship.
