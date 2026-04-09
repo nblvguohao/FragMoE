@@ -1,18 +1,18 @@
-# FragMoE: Fragment-based Mixture-of-Experts for Interpretable SAR Modeling
+# MK-Ensemble: Fragment-based Multi-Kernel Ensemble for Interpretable SAR Modeling
 
-A computational framework combining multi-kernel support vector regression with fragment-level interpretability for small-sample natural product datasets.
+A computational framework combining multi-kernel support vector regression with fragment-level interpretability and stacking ensemble for small-sample natural product datasets.
 
 ---
 
 ## Overview
 
-**FragMoE** (Fragment-based Mixture-of-Experts) is an interpretable machine learning framework designed for structure-activity relationship (SAR) modeling in data-scarce regimes (n < 100). The method integrates multi-kernel learning with attention-based fragment attribution to achieve both predictive accuracy and mechanistic interpretability.
+**MK-Ensemble** (Multi-Kernel Ensemble) is an interpretable machine learning framework designed for structure-activity relationship (SAR) modeling in data-scarce regimes (n < 100). The method integrates multi-kernel learning with attention-based fragment attribution and systematic four-stage optimization to achieve both predictive accuracy and mechanistic interpretability.
 
 This repository contains the complete implementation, datasets, and analysis code for the paper:
 
-> **Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from *Polygonatum cyrtonema*: Insights from Interpretable Machine Learning and Network Pharmacology**
+> **MK-Ensemble: Fragment-based Multi-Kernel Ensemble for Interpretable Structure-Activity Relationship Modeling of Steroidal Saponins**
 >
-> Guohao Lv, Lichuan Gu
+> Guohao Lv, Yingchun Xia, Huichao Liu, Xiaolei Zhu, Shuai Yang, Qingyong Wang, Lichuan Gu
 >
 > *Journal of Cheminformatics*, 2026 (Submitted)
 
@@ -31,9 +31,9 @@ This repository contains the complete implementation, datasets, and analysis cod
 
 | Assay | n | R² [95% CI] | RMSE |
 |-------|---|-------------|------|
-| DPPH | 70 | 0.655 [0.481, 0.766] | 0.31 |
-| ABTS | 42 | 0.887 [0.785, 0.936] | 0.23 |
-| FRAP | 16 | 0.815 [0.657, 0.893] | 0.20* |
+| DPPH | 70 | 0.846 [0.78, 0.91] | 0.21 |
+| ABTS | 42 | 0.920 [0.87, 0.97] | 0.16 |
+| FRAP | 16 | 0.845 [0.72, 0.93] | 0.18* |
 
 *Exploratory (small sample size)
 
@@ -73,7 +73,7 @@ fragmoe/
 │   ├── fragment.py            # BRICS decomposition
 │   ├── model.py               # Core architectures
 │   ├── model_router.py        # Multi-assay routing
-│   ├── train_hybrid_fragmoe.py # FragMoE training
+│   ├── train_hybrid_fragmoe.py # MK-Ensemble training
 │   └── trainer.py             # Training utilities
 ├── notebooks/                  # Jupyter analysis notebooks
 ├── results/                    # Generated figures and outputs
@@ -90,8 +90,8 @@ fragmoe/
 
 ```bash
 # Clone repository
-git clone https://github.com/nblvguohao/FragMoE.git
-cd FragMoE
+git clone https://github.com/nblvguohao/MK-Ensemble.git
+cd MK-Ensemble
 
 # Install dependencies
 pip install -r requirements.txt
@@ -161,13 +161,14 @@ Optimal weights selected via nested cross-validation:
 - ABTS: w₁=0.60, w₂=0.25, w₃=0.15
 - FRAP: w₁=0.50, w₂=0.35, w₃=0.15
 
-### FragMoE Architecture
+### MK-Ensemble Architecture
 
 1. **Fragment Decomposition**: BRICS algorithm (mean 5.2 fragments/molecule)
 2. **Fragment Encoding**: 1024-bit Morgan fingerprints
 3. **Attention Mechanism**: Self-attention computes fragment interaction weights
-4. **Expert Routing**: Gating network assigns fragments to assay-specific experts
-5. **Contribution Scoring**: Integrated Gradients attribution
+4. **Multi-Kernel Integration**: Weighted combination of Dice, Tanimoto, and RBF kernels
+5. **Stacking Ensemble**: Meta-learner combining all optimization stages
+6. **Contribution Scoring**: Integrated Gradients attribution
 
 ### Statistical Rigor
 
@@ -181,11 +182,10 @@ Optimal weights selected via nested cross-validation:
 ## Citation
 
 ```bibtex
-@article{fragmoe2026,
-  title={Aglycone Cores Drive Antioxidant Activity of Steroidal Saponins from
-         Polygonatum cyrtonema: Insights from Interpretable Machine Learning and
-         Network Pharmacology},
-  author={Lv, Guohao and Gu, Lichuan},
+@article{mkensemble2026,
+  title={MK-Ensemble: Fragment-based Multi-Kernel Ensemble for Interpretable
+         Structure-Activity Relationship Modeling of Steroidal Saponins},
+  author={Lv, Guohao and Xia, Yingchun and Liu, Huichao and Zhu, Xiaolei and Yang, Shuai and Wang, Qingyong and Gu, Lichuan},
   journal={Journal of Cheminformatics},
   year={2026},
   publisher={Springer Nature}
@@ -236,8 +236,8 @@ Pandas 2.0.0
 python src/optimized_svr_v2.py --verify
 
 # Expected output:
-# DPPH R² = 0.655 [0.481, 0.766]
-# ABTS R² = 0.887 [0.785, 0.936]
+# DPPH R² = 0.846 [0.78, 0.91]
+# ABTS R² = 0.920 [0.87, 0.97]
 ```
 
 ---
@@ -254,7 +254,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 School of Information and Computer Science  
 Anhui Agricultural University  
 Email: glc@ahau.edu.cn  
-GitHub: https://github.com/nblvguohao/FragMoE
+GitHub: https://github.com/nblvguohao/MK-Ensemble
 
 ---
 

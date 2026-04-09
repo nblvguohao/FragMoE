@@ -1,0 +1,5 @@
+Comparison,DPPH_pvalue,ABTS_pvalue
+FragMoE vs Random Forest,0.596 (ns),0.629 (ns)
+FragMoE vs XGBoost,0.019 (*),0.014 (*)
+FragMoE vs SVR-RBF,0.095 (ns),<0.001 (***)
+FragMoE vs PLS,0.018 (*),0.072 (ns)

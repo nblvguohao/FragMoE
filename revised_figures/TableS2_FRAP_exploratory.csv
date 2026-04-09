@@ -1,0 +1,6 @@
+Model,FRAP_R2,Note
+FragMoE,0.789 ± 0.055,Exploratory (n=16)
+Random Forest,0.727 ± 0.048,Exploratory (n=16)
+XGBoost,0.075 ± 0.062,Exploratory (n=16)
+SVR-RBF,0.687 ± 0.052,Exploratory (n=16)
+PLS,0.690 ± 0.050,Exploratory (n=16)

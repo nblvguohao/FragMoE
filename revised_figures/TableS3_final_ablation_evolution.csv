@@ -1,0 +1,6 @@
+Stage,DPPH_R2,DPPH_Gain,ABTS_R2,ABTS_Gain,Key_Addition
+1. FragMoE (Base),0.455,—,0.735,—,Multi-kernel SVR
+2. Hybrid (+Fragments),0.546,+20.0%,0.882,+20.0%,Fragment-level features
+3. V2 (+Domain Adapt),0.641,+17.4%,0.892,+1.1%,Assay-specific tuning
+4. Stacking (+Ensemble),0.846,+32.0%,0.92,+3.1%,Weighted ensemble
+Baseline (RF),0.822,—,0.795,—,Reference baseline
